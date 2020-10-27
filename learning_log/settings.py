@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from secrets import *
+from ll_secrets import *
 
 from pathlib import Path
 
@@ -34,6 +34,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # My apps.
+    'learning_logs',
+
+    # Default django apps.
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
