@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['192.168.0.223', '127.0.0.1', '0.0.0.0']
 INSTALLED_APPS = [
     # My apps.
     'learning_logs',
+    'users',
 
     # Default django apps.
     'django.contrib.admin',
@@ -125,3 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# My settings
+LOGIN_URL = 'users:login'
