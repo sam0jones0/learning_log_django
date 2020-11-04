@@ -8,7 +8,10 @@ from .forms import TopicForm, EntryForm
 
 def index(request):
     """The home page for learning log."""
-    return render(request, 'learning_logs/index.html')
+    if request.user.is_authenticated:
+        return topics(request)
+    else:
+        return render(request, 'learning_logs/index.html')
 
 
 def check_topic_owner(request, topic):
