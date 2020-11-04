@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 
-from ll_secrets import *
-
 from pathlib import Path
 
 
