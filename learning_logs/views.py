@@ -62,7 +62,7 @@ def new_topic(request):
 @login_required
 def new_entry(request, topic_id):
     """Add a new entry for a particular topic."""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     check_topic_owner(request, topic)
 
     if request.method != 'POST':
@@ -85,19 +85,24 @@ def new_entry(request, topic_id):
 @login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry."""
-    entry = Entry.objects.get(id=entry_id)
+    entry = get_object_or_404(Entry, id=entry_id)
     topic = entry.topic
     check_topic_owner(request, topic)
-
     if request.method != 'POST':
         # Initial request; pre-fill form with the current entry.
         form = EntryForm(instance=entry)
     else:
         # POST data submitted; process data.
-        form = EntryForm(instance=entry, data=request.POST)
-        if form.is_valid():
-            form.save()
+        if 'submit' in request.POST:
+            # Submit button was clicked.
+            form = EntryForm(instance=entry, data=request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('learning_logs:topic', topic_id=topic.id)
+        elif 'delete' in request.POST:
+            entry.delete()
             return redirect('learning_logs:topic', topic_id=topic.id)
 
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, "learning_logs/edit_entry.html", context)
+
