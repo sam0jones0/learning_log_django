@@ -5,6 +5,7 @@
 {% endblock page_header %}
 
 {% block content %}
+    <br>
     <ul>
         {% for topic in topics %}
             <li><h3>
@@ -14,6 +15,9 @@
             <li><h3>Sorry, no topics have been added yet.</h3></li>
         {% endfor %}
     </ul>
+    <br>
+    <p>
+        <a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a>
+    </p>
 
-    <h4><a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a></h4>
 {% endblock content %}
