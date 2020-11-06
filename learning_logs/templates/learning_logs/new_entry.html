@@ -2,12 +2,19 @@
 {% load bootstrap4 %}
 
 {% block page_header %}
-    <h2><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h2>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic|title }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">New Entry</li>
+        </ol>
+    </nav>
+
 {% endblock page_header %}
 
 {% block content %}
 
-    <p>Add new entry:</p>
+    <h5 style="padding-bottom: 12px;padding-top: 12px;margin-bottom: 10px;">Add new entry:</h5>
 
     <form method="post" action="{% url 'learning_logs:new_entry' topic.id %}" class="form">
         {% csrf_token %}

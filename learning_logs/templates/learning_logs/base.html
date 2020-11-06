@@ -52,13 +52,17 @@
   </nav>
 
 <main role="main" class="container">
-  <div class="pb-2 mb-2 border-bottom">
+  <div class="pb-2 mb-2">
       {% block page_header %}{% endblock page_header %}
   </div>
   <div>
     {% block content %}{% endblock content %}
   </div>
 </main>
+
+<nav class="navbar fixed-bottom navbar-expand-md navbar-light bg-light">
+    <span class="navbar-text mx-auto">Sam Jones {% now "Y" %}</span>
+</nav>
 
 </body>
 

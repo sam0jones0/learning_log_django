@@ -1,14 +1,19 @@
 {% extends 'learning_logs/base.html' %}
 
 {% block page_header %}
-    <h2>{{ topic|title }}</h2>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ topic|title }}</li>
+        </ol>
+    </nav>
 {% endblock page_header %}
 
 
 {% block content %}
 
     <p>
-        <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
+        <a href="{% url 'learning_logs:new_entry' topic.id %}">Add New Entry</a>
     </p>
 
         {% for entry in entries %}
@@ -20,7 +25,7 @@
                         </span>
                         <span class="col text-right">
                             <small><a href="{% url 'learning_logs:edit_entry' entry.id %}">
-                                Edit entry</a></small>
+                                Edit Entry</a></small>
                         </span>
                     </span>
                 </h4>
